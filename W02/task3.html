@@ -1,0 +1,56 @@
+<html>
+
+    <head>
+        <title>Task 3</title>
+    </head>
+
+    <body>
+        <script src="vec3.js"></script>
+        <script>
+            var x0, y0, z0; // (input vertex 0)
+            var x1, y1, z1; // (input vertex 1)
+            var x2, y2, z2; // (input vertex 2)
+            var AreaOfTriangle = (v0, v1, v2) => {
+                var diff = (a,b) => new Vec3( a.x-b.x, a.y-b.y, a.z-b.z );
+                va = diff(v1,v0);
+                vb = diff(v2,v0);
+                return 0.5*(((va.y*vb.z-va.z*vb.y)**2+(va.z*vb.x-va.x*vb.z)**2+(va.x*vb.y-va.y*vb.x)**2)**0.5)
+            }
+            var func0 = (t) => {
+                x0 = +document.getElementById("x0").value
+                y0 = +document.getElementById("y0").value
+                z0 = +document.getElementById("z0").value
+                x1 = +document.getElementById("x1").value
+                y1 = +document.getElementById("y1").value
+                z1 = +document.getElementById("z1").value
+                x2 = +document.getElementById("x2").value
+                y2 = +document.getElementById("y2").value
+                z2 = +document.getElementById("z2").value
+                var v0 = new Vec3( x0, y0, z0 );
+                var v1 = new Vec3( x1, y1, z1 );
+                var v2 = new Vec3( x2, y2, z2 );
+                var S = AreaOfTriangle( v0, v1, v2 ); // (output value)
+                document.getElementById("ans").innerHTML = "三角形の面積は"+S;
+            }
+        </script>
+
+        <form>
+            <table>
+                <tr><th></th><th>v0</th><th>v1</th><th>v2</th></tr>
+                <tr>
+                    <th>x</th><td><input type="text" id="x0" /></td><td><input type="text" id="x1" /></td><td><input type="text" id="x2" /></td>
+                </tr>
+                <tr>
+                    <th>y</th><td><input type="text" id="y0" /></td><td><input type="text" id="y1" /></td><td><input type="text" id="y2" /></td>
+                </tr>
+                <tr>
+                    <th>z</th><td><input type="text" id="z0" /></td><td><input type="text" id="z1" /></td><td><input type="text" id="z2" /></td>
+                </tr>
+            </table>
+            <button type="button" onclick="func0()">計算</button>
+        </form>
+        <hr/>
+        <p id="ans"></p>
+    </body>
+
+</html>
