@@ -13,7 +13,7 @@ function main()
     screen.scene.add( bounds );
 
     var isovalue = 128;
-    var surfaces = Isosurfaces( volume, isovalue);
+    var surfaces = Isosurfaces( volume, isovalue, screen);
     screen.scene.add( surfaces );
 
     document.addEventListener( 'mousemove', function() {
