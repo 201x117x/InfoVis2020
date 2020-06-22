@@ -8,6 +8,9 @@
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
 
+<p>日本のGDPの推移<br/>
+  横軸は年<br/>
+  縦軸はtrillion US$</p>
 
 <script>
 
@@ -30,14 +33,14 @@ d3.csv("https://201x117x.github.io/InfoVis2020/W12/Japans_GDP.csv",
 
   // When reading the csv, I must format variables:
   function(d){
-    return { year : d.year, value : d.value }
+    return { year : d.year, value : d.value*1E-12 }
   },
 
   // Now I can use this dataset:
   function(data) {
 
     // Add X axis --> it is a date format
-    var x = d3.scaleTime()
+    var x = d3.scaleLinear()
       .domain(d3.extent(data, function(d) { return d.year; }))
       .range([ 0, width ]);
     svg.append("g")
